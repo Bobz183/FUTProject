@@ -1,20 +1,52 @@
-const players = [
-    'Player 1', 'Player 2', 'Player 3', 'Player 4', 'Player 5', 'Player 6', 'Player 7', 'Player 8', 'Player 9', 'Player 10'
-];
-
-function getRandomPlayer() {
-    const randomIndex = Math.floor(Math.random() * players.length);
-    return players[randomIndex];
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-function openPack() {
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = '';
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-    for (let i = 0; i < 10; i++) {
-        const player = getRandomPlayer();
-        const playerElement = document.createElement('p');
-        playerElement.textContent = player;
-        resultDiv.appendChild(playerElement);
-    }
+h1, h2 {
+    text-align: center;
+}
+
+.info {
+    text-align: center;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.inventory {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.card {
+    display: inline-block;
+    margin: 10px;
+    width: 120px;
+    height: 180px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
