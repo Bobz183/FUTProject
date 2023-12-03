@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA Pack Opening Simulator</title>
+    <title>FIFA Ultimate Team Pack Opener</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="pack">
-        <button onclick="openPack()">Open Pack</button>
+    <div class="container">
+        <h1>FIFA Ultimate Team Pack Opener</h1>
+        <div class="info">
+            <p>Coins: <span id="coins">1000</span></p>
+            <p>Owned Players: <span id="ownedPlayers">0</span></p>
+        </div>
+        <div class="packs">
+            <button onclick="openPack('regular')">Open Regular Pack (1000 coins)</button>
+            <button onclick="openPack('special')">Open Special Pack (1000 coins)</button>
+            <button onclick="openPack('free')">Open Free Pack</button>
+        </div>
         <div id="result"></div>
+        <div class="inventory">
+            <h2>Player Inventory</h2>
+            <div id="playerInventory"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
