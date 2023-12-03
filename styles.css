@@ -1,22 +1,73 @@
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+const playerNames = [
+    'Lionel Messi', 'Cristiano Ronaldo', 'Neymar', 'Kylian Mbappe', 'Mohamed Salah', 'Robert Lewandowski', 'Kevin De Bruyne', 'Sadio Mane', 'Virgil van Dijk', 'Luka Modric'
+];
+
+let coins = 1000;
+let ownedPlayers = 0;
+let playerInventory = [];
+
+function getRandomPlayer() {
+    const randomIndex = Math.floor(Math.random() * playerNames.length);
+    return playerNames[randomIndex];
 }
 
-.pack {
-    text-align: center;
+function updateUI() {
+    document.getElementById('coins').textContent = coins;
+    document.getElementById('ownedPlayers').textContent = ownedPlayers;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+function openPack(packType) {
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = '';
+
+    let packCost = 1000;
+
+    if (packType === 'free') {
+        packCost = 0;
+    }
+
+    if (coins < packCost) {
+        resultDiv.textContent = 'Not enough coins to open the pack!';
+        return;
+    }
+
+    coins -= packCost;
+    updateUI();
+
+    const packSize = 5; // Number of players in each pack
+
+    for (let i = 0; i < packSize; i++) {
+        const player = getRandomPlayer();
+        playerInventory.push(player);
+        ownedPlayers++;
+        updateUI();
+
+        const playerElement = document.createElement('div');
+        playerElement.className = 'card';
+        playerElement.textContent = player;
+        playerElement.style.backgroundColor = getRandomColor(); // Function to generate a random color
+        resultDiv.appendChild(playerElement);
+    }
 }
 
-#result {
-    margin-top: 20px;
-    font-size: 18px;
+function displayInventory() {
+    const inventoryDiv = document.getElementById('playerInventory');
+    inventoryDiv.innerHTML = '';
+
+    playerInventory.forEach(player => {
+        const playerElement = document.createElement('div');
+        playerElement.className = 'card';
+        playerElement.textContent = player;
+        playerElement.style.backgroundColor = getRandomColor(); // Function to generate a random color
+        inventoryDiv.appendChild(playerElement);
+    });
+}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
